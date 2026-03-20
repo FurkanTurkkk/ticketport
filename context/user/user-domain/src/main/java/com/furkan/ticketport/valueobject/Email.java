@@ -1,6 +1,7 @@
 package com.furkan.ticketport.valueobject;
 
-import com.furkan.ticketport.user.InvalidEmailException;
+
+import com.furkan.ticketport.exception.InvalidEmailException;
 
 import java.util.regex.Pattern;
 

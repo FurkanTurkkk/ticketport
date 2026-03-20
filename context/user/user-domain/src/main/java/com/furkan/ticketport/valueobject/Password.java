@@ -1,6 +1,6 @@
 package com.furkan.ticketport.valueobject;
 
-import com.furkan.ticketport.user.InvalidPasswordException;
+import com.furkan.ticketport.exception.InvalidPasswordException;
 
 public final class Password {
 

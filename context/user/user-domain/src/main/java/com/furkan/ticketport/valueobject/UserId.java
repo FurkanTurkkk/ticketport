@@ -1,6 +1,6 @@
 package com.furkan.ticketport.valueobject;
 
-import com.furkan.ticketport.user.InvalidUserIdException;
+import com.furkan.ticketport.exception.InvalidUserIdException;
 
 import java.util.UUID;
 
