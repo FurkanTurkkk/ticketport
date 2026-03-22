@@ -1,5 +1,9 @@
 package com.furkan.ticketport.port.out;
 
-public interface UserPersistencePort {
+import com.furkan.ticketport.model.User;
+import com.furkan.ticketport.valueobject.UserId;
 
+public interface UserPersistencePort {
+    UserId save(User user);
+    void delete(User user);
 }

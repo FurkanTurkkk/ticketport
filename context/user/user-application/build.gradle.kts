@@ -1,5 +1,6 @@
 dependencies {
     implementation("org.springframework:spring-tx")
+    implementation("org.springframework:spring-context")
 
     implementation(project(":user-domain"))
 
