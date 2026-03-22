@@ -15,6 +15,13 @@ public final class Password {
         return new Password(value);
     }
 
+    public static Password fromStoredHash(String bcryptHash) {
+        if (bcryptHash == null || bcryptHash.isBlank()) {
+            throw new InvalidPasswordException("Stored password hash cannot be null or empty");
+        }
+        return new Password(bcryptHash);
+    }
+
     private static void validate(String value) {
         if (value == null || value.isEmpty()) {
             throw new InvalidPasswordException("Password cannot be null or empty");
