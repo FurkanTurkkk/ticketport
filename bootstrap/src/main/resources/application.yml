@@ -16,3 +16,8 @@ spring:
         format_sql: true
   flyway:
     enabled: true
+
+security:
+  jwt:
+    secret: "gfgdfhfghjtrdregbewWWDSFSDFsdfwefsdfsdfsdfsdfsdfwsdfsdfsdf"
+    expiration-ms: 3600000

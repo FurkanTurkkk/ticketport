@@ -9,6 +9,8 @@ dependencies {
     implementation("org.springframework:spring-tx")
     implementation("org.flywaydb:flyway-core")
 
+    implementation(project(":security"))
+
     implementation(project(":user-application"))
     implementation(project(":user-infra"))
     implementation(project(":user-api"))
