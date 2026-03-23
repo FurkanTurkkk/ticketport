@@ -2,6 +2,9 @@ package com.furkan.ticketport.user.mapper;
 
 import com.furkan.ticketport.user.entity.UserEntity;
 import com.furkan.ticketport.user.model.User;
+import com.furkan.ticketport.user.valueobject.Email;
+import com.furkan.ticketport.user.valueobject.Password;
+import com.furkan.ticketport.user.valueobject.UserId;
 
 public final class UserMapper {
 
@@ -16,5 +19,14 @@ public final class UserMapper {
         entity.setCreatedAt(user.createdAt());
         entity.setUpdatedAt(user.updatedAt());
         return entity;
+    }
+
+    public static User toDomain(UserEntity entity) {
+        return User.create(
+                UserId.valueOf(entity.getId()),
+                Email.valueOf(entity.getEmail()),
+                Password.fromStoredHash(entity.getPassword()
+                )
+        );
     }
 }
