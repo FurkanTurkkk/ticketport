@@ -93,6 +93,10 @@ public class Event {
         return status;
     }
 
+    public boolean isPublished() {
+        return status == EventStatus.PUBLISHED;
+    }
+
     public Instant createdAt() {
         return createdAt;
     }

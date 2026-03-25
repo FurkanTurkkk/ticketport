@@ -12,6 +12,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import static com.furkan.ticketport.user.testsupport.TestPasswords.VALID_PLAIN;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,7 +36,7 @@ class LoggingRegisterUserUseCaseTest {
 
         assertEquals(id, logging.execute(cmd));
 
-        verify(logPort).info("Started register use-case");
-        verify(logPort).info("Ended register use-case");
+        verify(logPort).info("useCase=RegisterUser phase=start");
+        verify(logPort).info(eq("useCase=RegisterUser phase=completed userId={}"), eq("u-1"));
     }
 }

@@ -34,7 +34,7 @@ class LoggingLoginUserUseCaseTest {
 
         assertEquals(result, logging.execute(cmd));
 
-        verify(logPort).info("Started: LOGIN use-case");
-        verify(logPort).info("Ended: LOGIN use-case");
+        verify(logPort).info("useCase=LoginUser phase=start (credentials redacted)");
+        verify(logPort).info("useCase=LoginUser phase=completed (token redacted)");
     }
 }

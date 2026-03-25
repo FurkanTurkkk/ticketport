@@ -1,4 +1,4 @@
-package com.furkan.ticketport.event.port.out;
+package com.furkan.ticketport.event.port.out.event;
 
 import com.furkan.ticketport.event.model.Category;
 import com.furkan.ticketport.event.model.Event;

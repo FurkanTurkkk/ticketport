@@ -1,26 +1,26 @@
-package com.furkan.ticketport.event.usecase;
+package com.furkan.ticketport.event.usecase.event;
 
-import com.furkan.ticketport.event.command.UnpublishEventCommand;
+import com.furkan.ticketport.event.command.event.PublishEventCommand;
 import com.furkan.ticketport.event.exception.EventNotFoundException;
 import com.furkan.ticketport.event.model.Event;
-import com.furkan.ticketport.event.port.in.UnpublishEventUseCase;
-import com.furkan.ticketport.event.port.out.EventPersistencePort;
-import com.furkan.ticketport.event.port.out.EventQueryPort;
+import com.furkan.ticketport.event.port.in.event.PublishEventUseCase;
+import com.furkan.ticketport.event.port.out.event.EventPersistencePort;
+import com.furkan.ticketport.event.port.out.event.EventQueryPort;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UnpublishEventService implements UnpublishEventUseCase {
+public class PublishEventService implements PublishEventUseCase {
 
     private final EventQueryPort eventQueryPort;
     private final EventPersistencePort eventPersistencePort;
 
-    public UnpublishEventService(EventQueryPort eventQueryPort, EventPersistencePort eventPersistencePort) {
+    public PublishEventService(EventQueryPort eventQueryPort, EventPersistencePort eventPersistencePort) {
         this.eventQueryPort = eventQueryPort;
         this.eventPersistencePort = eventPersistencePort;
     }
 
     @Override
-    public void execute(UnpublishEventCommand cmd) {
+    public void execute(PublishEventCommand cmd) {
         Event event =
                 eventQueryPort
                         .findByEventId(cmd.eventId())
@@ -29,7 +29,7 @@ public class UnpublishEventService implements UnpublishEventUseCase {
                                         new EventNotFoundException(
                                                 "Event not found: " + cmd.eventId().asString()));
 
-        event.unpublishToDraft();
+        event.publish();
         eventPersistencePort.save(event);
     }
 }

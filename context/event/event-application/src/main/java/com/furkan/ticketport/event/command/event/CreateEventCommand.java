@@ -1,4 +1,4 @@
-package com.furkan.ticketport.event.command;
+package com.furkan.ticketport.event.command.event;
 
 import com.furkan.ticketport.event.valueobject.CategoryId;
 import com.furkan.ticketport.event.valueobject.Title;

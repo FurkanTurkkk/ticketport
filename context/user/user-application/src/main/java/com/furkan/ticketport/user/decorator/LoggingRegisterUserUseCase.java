@@ -22,9 +22,9 @@ public class LoggingRegisterUserUseCase implements RegisterUserUseCase {
 
     @Override
     public UserId execute(RegisterUserCommand cmd) {
-        logPort.info("Started register use-case");
+        logPort.info("useCase=RegisterUser phase=start");
         UserId userId = delegate.execute(cmd);
-        logPort.info("Ended register use-case");
+        logPort.info("useCase=RegisterUser phase=completed userId={}", userId.asString());
         return userId;
     }
 }

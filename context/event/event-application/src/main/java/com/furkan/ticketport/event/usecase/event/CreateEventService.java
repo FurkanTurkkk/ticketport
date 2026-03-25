@@ -1,9 +1,9 @@
-package com.furkan.ticketport.event.usecase;
+package com.furkan.ticketport.event.usecase.event;
 
-import com.furkan.ticketport.event.command.CreateEventCommand;
+import com.furkan.ticketport.event.command.event.CreateEventCommand;
 import com.furkan.ticketport.event.model.Event;
-import com.furkan.ticketport.event.port.in.CreateEventUseCase;
-import com.furkan.ticketport.event.port.out.EventPersistencePort;
+import com.furkan.ticketport.event.port.in.event.CreateEventUseCase;
+import com.furkan.ticketport.event.port.out.event.EventPersistencePort;
 import com.furkan.ticketport.event.valueobject.CoverImageRef;
 import com.furkan.ticketport.event.valueobject.EventId;
 import org.springframework.stereotype.Service;

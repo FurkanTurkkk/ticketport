@@ -1,6 +1,6 @@
-package com.furkan.ticketport.user.adapter;
+package com.furkan.ticketport.event.adapter;
 
-import com.furkan.ticketport.user.port.out.LogPort;
+import com.furkan.ticketport.event.port.out.LogPort;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LogAdapter implements LogPort {
 
-    private static final Logger log = LoggerFactory.getLogger("ticketport.user.application");
+    private static final Logger log = LoggerFactory.getLogger("ticketport.event.application");
 
     @Override
     public void info(String message) {

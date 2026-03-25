@@ -22,9 +22,9 @@ public class LoggingLoginUserUseCase implements LoginUserUseCase {
 
     @Override
     public LoginResult execute(LoginUserCommand cmd) {
-        logPort.info("Started: LOGIN use-case");
+        logPort.info("useCase=LoginUser phase=start (credentials redacted)");
         LoginResult result = delegate.execute(cmd);
-        logPort.info("Ended: LOGIN use-case");
+        logPort.info("useCase=LoginUser phase=completed (token redacted)");
         return result;
     }
 }
