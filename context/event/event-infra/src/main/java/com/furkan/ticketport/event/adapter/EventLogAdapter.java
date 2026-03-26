@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LogAdapter implements LogPort {
+public class EventLogAdapter implements LogPort {
 
     private static final Logger log = LoggerFactory.getLogger("ticketport.event.application");
 

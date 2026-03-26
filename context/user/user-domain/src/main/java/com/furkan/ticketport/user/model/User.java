@@ -25,8 +25,34 @@ public class User {
         this.updatedAt = Instant.now();
     }
 
+    private User(
+            UserId userId,
+            Email email,
+            Password password,
+            Role role,
+            Instant createdAt,
+            Instant updatedAt) {
+        this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public static User create(UserId userId, Email email, Password password) {
         return new User(userId, email, password);
+    }
+
+    /** Kalıcı modelden okuma (persisted role ve zaman damgaları korunur). */
+    public static User restore(
+            UserId userId,
+            Email email,
+            Password password,
+            Role role,
+            Instant createdAt,
+            Instant updatedAt) {
+        return new User(userId, email, password, role, createdAt, updatedAt);
     }
 
     public UserId userId() {return this.userId; }

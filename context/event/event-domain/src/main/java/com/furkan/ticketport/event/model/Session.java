@@ -36,12 +36,47 @@ public class Session {
         this.updatedAt = Instant.now();
     }
 
+    private Session(
+            SessionId sessionId,
+            EventId eventId,
+            int capacity,
+            SessionStatus status,
+            Instant startedAt,
+            Instant endsAt,
+            Instant createdAt,
+            Instant updatedAt) {
+        this.sessionId = sessionId;
+        this.eventId = eventId;
+        this.capacity = capacity;
+        this.status = status;
+        this.startedAt = startedAt;
+        this.endsAt = endsAt;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public static Session create(
             SessionId sessionId, EventId eventId, int capacity, Instant startedAt, Instant endsAt) {
         validateCapacity(capacity);
         validateSchedule(startedAt, endsAt);
         return new Session(
                 sessionId, eventId, capacity, SessionStatus.ON_SALE, startedAt, endsAt);
+    }
+
+    /** Persistanstan okuma; yeni seans için {@link #create} kullan. */
+    public static Session restore(
+            SessionId sessionId,
+            EventId eventId,
+            int capacity,
+            SessionStatus status,
+            Instant startedAt,
+            Instant endsAt,
+            Instant createdAt,
+            Instant updatedAt) {
+        validateCapacity(capacity);
+        validateSchedule(startedAt, endsAt);
+        return new Session(
+                sessionId, eventId, capacity, status, startedAt, endsAt, createdAt, updatedAt);
     }
 
     private static void validateCapacity(int capacity) {

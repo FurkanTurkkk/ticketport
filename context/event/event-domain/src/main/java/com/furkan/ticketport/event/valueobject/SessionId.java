@@ -17,6 +17,7 @@ public final class SessionId {
     }
 
     public static SessionId valueOf(String value) {
+        validate(value);
         return new SessionId(value);
     }
 

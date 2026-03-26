@@ -33,7 +33,7 @@ class RegisterUserControllerTest {
     @BeforeEach
     void setUp() {
         mockMvc =
-                MockMvcBuilders.standaloneSetup(new RegisterUserController(registerUserUseCase, loginUserUseCase))
+                MockMvcBuilders.standaloneSetup(new UserController(registerUserUseCase, loginUserUseCase))
                         .build();
     }
 

@@ -44,6 +44,57 @@ public class Event {
         this.updatedAt = Instant.now();
     }
 
+    /** Tam aggregate durumu (persistanstan okuma); yeni oluşturma için {@link #create} kullan. */
+    private Event(
+            EventId eventId,
+            CategoryId categoryId,
+            Title title,
+            String normalizedTitle,
+            String description,
+            CoverImageRef coverImage,
+            Slug slug,
+            EventStatus status,
+            Instant createdAt,
+            Instant updatedAt) {
+        this.eventId = eventId;
+        this.categoryId = categoryId;
+        this.title = title;
+        this.normalizedTitle =
+                normalizedTitle != null && !normalizedTitle.isBlank()
+                        ? normalizedTitle
+                        : title.normalizedForDuplicateCheck();
+        this.description = description;
+        this.coverImage = coverImage;
+        this.slug = slug;
+        this.status = status;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public static Event restore(
+            EventId eventId,
+            CategoryId categoryId,
+            Title title,
+            String normalizedTitle,
+            String description,
+            CoverImageRef coverImage,
+            Slug slug,
+            EventStatus status,
+            Instant createdAt,
+            Instant updatedAt) {
+        return new Event(
+                eventId,
+                categoryId,
+                title,
+                normalizedTitle,
+                description,
+                coverImage,
+                slug,
+                status,
+                createdAt,
+                updatedAt);
+    }
+
     public static Event create(EventId eventId, CategoryId categoryId, Title title) {
         return new Event(eventId, categoryId, title, null, null, null, EventStatus.DRAFT);
     }

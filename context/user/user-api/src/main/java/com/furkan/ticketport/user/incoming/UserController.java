@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/auth")
-public class RegisterUserController {
+public class UserController {
 
     private final RegisterUserUseCase registerUserUseCase;
     private final LoginUserUseCase loginUserUseCase;
 
-    public RegisterUserController(RegisterUserUseCase registerUserUseCase, LoginUserUseCase loginUserUseCase) {
+    public UserController(RegisterUserUseCase registerUserUseCase, LoginUserUseCase loginUserUseCase) {
         this.registerUserUseCase = registerUserUseCase;
         this.loginUserUseCase = loginUserUseCase;
     }

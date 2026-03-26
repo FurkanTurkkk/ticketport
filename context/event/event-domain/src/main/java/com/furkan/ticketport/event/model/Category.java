@@ -18,8 +18,22 @@ public class Category {
         this.updatedAt = Instant.now();
     }
 
+    private Category(
+            CategoryId categoryId, CategoryType type, Instant createdAt, Instant updatedAt) {
+        this.categoryId = categoryId;
+        this.type = type;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
     public static Category create(CategoryId categoryId, CategoryType type) {
         return new Category(categoryId, type);
+    }
+
+    /** Persistanstan okuma. */
+    public static Category restore(
+            CategoryId categoryId, CategoryType type, Instant createdAt, Instant updatedAt) {
+        return new Category(categoryId, type, createdAt, updatedAt);
     }
 
     public CategoryId categoryId() { return categoryId; }

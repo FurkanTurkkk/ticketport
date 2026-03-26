@@ -22,11 +22,12 @@ public final class UserMapper {
     }
 
     public static User toDomain(UserEntity entity) {
-        return User.create(
+        return User.restore(
                 UserId.valueOf(entity.getId()),
                 Email.valueOf(entity.getEmail()),
-                Password.fromStoredHash(entity.getPassword()
-                )
-        );
+                Password.fromStoredHash(entity.getPassword()),
+                entity.getRole(),
+                entity.getCreatedAt(),
+                entity.getUpdatedAt());
     }
 }

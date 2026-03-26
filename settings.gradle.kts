@@ -1,8 +1,10 @@
 rootProject.name = "ticketport"
 
-include("bootstrap","security",
-    "user-domain","user-application","user-infra","user-api",
-    "event-domain","event-application","event-infra")
+include(
+    "bootstrap", "security",
+    "user-domain", "user-application", "user-infra", "user-api",
+    "event-domain", "event-application", "event-infra","event-api"
+)
 project(":security").projectDir = file("common/security")
 
 project(":user-domain").projectDir = file("context/user/user-domain")
@@ -13,3 +15,4 @@ project(":user-api").projectDir = file("context/user/user-api")
 project(":event-domain").projectDir = file("context/event/event-domain")
 project(":event-application").projectDir = file("context/event/event-application")
 project(":event-infra").projectDir = file("context/event/event-infra")
+project(":event-api").projectDir = file("context/event/event-api")
