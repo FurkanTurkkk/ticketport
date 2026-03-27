@@ -7,6 +7,7 @@ import com.furkan.ticketport.event.model.Event;
 import com.furkan.ticketport.event.port.out.event.EventQueryPort;
 import com.furkan.ticketport.event.repository.EventJpaRepository;
 import com.furkan.ticketport.event.valueobject.EventId;
+import com.furkan.ticketport.event.valueobject.Slug;
 import com.furkan.ticketport.event.valueobject.Title;
 import org.springframework.stereotype.Component;
 
@@ -25,6 +26,11 @@ public class EventQueryJpaAdapter implements EventQueryPort {
     @Override
     public Optional<Event> findByEventId(EventId eventId) {
         return eventJpaRepository.findById(eventId.asString()).map(EventMapper::toDomain);
+    }
+
+    @Override
+    public Optional<Event> findBySlug(Slug slug) {
+        return eventJpaRepository.findBySlug(slug.asString()).map(EventMapper::toDomain);
     }
 
     @Override

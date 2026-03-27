@@ -15,6 +15,7 @@ import com.furkan.ticketport.event.exception.InvalidSlugException;
 import com.furkan.ticketport.event.exception.InvalidTitleException;
 import com.furkan.ticketport.event.exception.SessionNotFoundException;
 import com.furkan.ticketport.event.exception.SlugImmutableAfterPublishException;
+import com.furkan.ticketport.event.exception.UniqueSlugAllocationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -51,6 +52,12 @@ public class EventExceptionHandler {
     public ResponseEntity<ErrorResponse> handleEventCannotBePublished(EventCannotBePublishedException e) {
         ErrorResponse body = new ErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+    }
+
+    @ExceptionHandler(UniqueSlugAllocationException.class)
+    public ResponseEntity<ErrorResponse> handleUniqueSlugAllocation(UniqueSlugAllocationException e) {
+        ErrorResponse body = new ErrorResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 
     @ExceptionHandler(SlugImmutableAfterPublishException.class)
