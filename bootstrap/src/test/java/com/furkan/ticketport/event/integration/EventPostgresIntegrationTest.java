@@ -24,13 +24,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-/**
- * PostgreSQL + Flyway + JPA ile etkinlik akışı: admin JWT, oluştur, slug ata, yayınla, seans, listeler.
- */
 @SpringBootTest(classes = TicketPortApplication.class)
 @AutoConfigureMockMvc
 @Testcontainers
-class EventCatalogPostgresIntegrationTest {
+class EventPostgresIntegrationTest {
 
     @Container
     static final PostgreSQLContainer<?> POSTGRES =

@@ -53,7 +53,9 @@ public class CreateSessionService implements CreateSessionUseCase {
                 SessionId.random(),
                 cmd.eventId(),
                 cmd.capacity(),
+                cmd.money(),
                 cmd.startedAt(),
-                cmd.endsAt());
+                cmd.endsAt()
+        );
     }
 }

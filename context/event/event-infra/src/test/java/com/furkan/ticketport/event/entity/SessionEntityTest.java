@@ -28,7 +28,7 @@ class SessionEntityTest {
     void fullConstructor() {
         Instant n = Instant.now();
         SessionEntity s =
-                new SessionEntity("i", "e", 2, SessionStatus.ON_SALE, n, n, n, n);
+                new SessionEntity("i", "e", 2, SessionStatus.ON_SALE, null, "TRY", n, n, n, n);
         assertEquals("i", s.getId());
     }
 }

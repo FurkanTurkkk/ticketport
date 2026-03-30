@@ -3,6 +3,7 @@ package com.furkan.ticketport.event.model;
 import com.furkan.ticketport.event.exception.InvalidSessionCapacityException;
 import com.furkan.ticketport.event.exception.InvalidSessionScheduleException;
 import com.furkan.ticketport.event.valueobject.EventId;
+import com.furkan.ticketport.event.valueobject.Money;
 import com.furkan.ticketport.event.valueobject.SessionId;
 import com.furkan.ticketport.event.valueobject.SessionStatus;
 
@@ -14,6 +15,7 @@ public class Session {
     private EventId eventId;
     private int capacity;
     private SessionStatus status;
+    private Money money;
     private Instant startedAt;
     private Instant endsAt;
     private final Instant createdAt;
@@ -24,12 +26,14 @@ public class Session {
             EventId eventId,
             int capacity,
             SessionStatus status,
+            Money money,
             Instant startedAt,
             Instant endsAt) {
         this.sessionId = sessionId;
         this.eventId = eventId;
         this.capacity = capacity;
         this.status = status;
+        this.money = money;
         this.startedAt = startedAt;
         this.endsAt = endsAt;
         this.createdAt = Instant.now();
@@ -41,6 +45,7 @@ public class Session {
             EventId eventId,
             int capacity,
             SessionStatus status,
+            Money money,
             Instant startedAt,
             Instant endsAt,
             Instant createdAt,
@@ -49,6 +54,7 @@ public class Session {
         this.eventId = eventId;
         this.capacity = capacity;
         this.status = status;
+        this.money = money;
         this.startedAt = startedAt;
         this.endsAt = endsAt;
         this.createdAt = createdAt;
@@ -56,11 +62,11 @@ public class Session {
     }
 
     public static Session create(
-            SessionId sessionId, EventId eventId, int capacity, Instant startedAt, Instant endsAt) {
+            SessionId sessionId, EventId eventId, int capacity, Money money, Instant startedAt, Instant endsAt
+    ){
         validateCapacity(capacity);
         validateSchedule(startedAt, endsAt);
-        return new Session(
-                sessionId, eventId, capacity, SessionStatus.ON_SALE, startedAt, endsAt);
+        return new Session(sessionId, eventId, capacity, SessionStatus.ON_SALE, money, startedAt, endsAt);
     }
 
     /** Persistanstan okuma; yeni seans için {@link #create} kullan. */
@@ -69,6 +75,7 @@ public class Session {
             EventId eventId,
             int capacity,
             SessionStatus status,
+            Money money,
             Instant startedAt,
             Instant endsAt,
             Instant createdAt,
@@ -76,7 +83,7 @@ public class Session {
         validateCapacity(capacity);
         validateSchedule(startedAt, endsAt);
         return new Session(
-                sessionId, eventId, capacity, status, startedAt, endsAt, createdAt, updatedAt);
+                sessionId, eventId, capacity, status, money, startedAt, endsAt, createdAt, updatedAt);
     }
 
     private static void validateCapacity(int capacity) {
@@ -109,6 +116,8 @@ public class Session {
     public SessionStatus status() {
         return status;
     }
+
+    public Money money() { return money; }
 
     public Instant startedAt() {
         return startedAt;

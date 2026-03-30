@@ -3,6 +3,7 @@ package com.furkan.ticketport.event.entity;
 import com.furkan.ticketport.event.valueobject.SessionStatus;
 import jakarta.persistence.*;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 
 @Entity
@@ -23,6 +24,12 @@ public class SessionEntity {
     private SessionStatus status;
 
     @Column(nullable = false)
+    private BigDecimal amount;
+
+    @Column(nullable = false)
+    private String currency;
+
+    @Column(nullable = false)
     private Instant startedAt;
 
     @Column(nullable = false)
@@ -41,6 +48,8 @@ public class SessionEntity {
             String eventId,
             int capacity,
             SessionStatus status,
+            BigDecimal amount,
+            String currency,
             Instant startedAt,
             Instant endsAt,
             Instant createdAt,
@@ -49,6 +58,8 @@ public class SessionEntity {
         this.eventId = eventId;
         this.capacity = capacity;
         this.status = status;
+        this.amount = amount;
+        this.currency = currency;
         this.startedAt = startedAt;
         this.endsAt = endsAt;
         this.createdAt = createdAt;
@@ -86,6 +97,14 @@ public class SessionEntity {
     public void setStatus(SessionStatus status) {
         this.status = status;
     }
+
+    public BigDecimal getAmount() { return amount;}
+
+    public void setAmount(BigDecimal amount) { this.amount = amount; }
+
+    public String getCurrency() { return currency; }
+
+    public void setCurrency(String currency) { this.currency = currency; }
 
     public Instant getStartedAt() {
         return startedAt;

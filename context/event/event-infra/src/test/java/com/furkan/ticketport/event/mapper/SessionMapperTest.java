@@ -3,11 +3,14 @@ package com.furkan.ticketport.event.mapper;
 import com.furkan.ticketport.event.entity.SessionEntity;
 import com.furkan.ticketport.event.model.Session;
 import com.furkan.ticketport.event.valueobject.EventId;
+import com.furkan.ticketport.event.valueobject.Money;
 import com.furkan.ticketport.event.valueobject.SessionId;
 import com.furkan.ticketport.event.valueobject.SessionStatus;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Currency;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,6 +28,7 @@ class SessionMapperTest {
                         EventId.valueOf("evm"),
                         9,
                         SessionStatus.SOLD_OUT,
+                        Money.create(new BigDecimal("12.5"), Currency.getInstance("TRY")),
                         t0,
                         t1,
                         c,

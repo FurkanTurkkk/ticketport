@@ -1,5 +1,13 @@
 plugins {
     id("org.springframework.boot") version "3.2.4"
+    id("org.flywaydb.flyway") version "9.22.3"
+}
+
+flyway {
+    url = "jdbc:postgresql://localhost:5432/ticketport"
+    user = "ticketport"
+    password = "ticketport"
+    locations = arrayOf("filesystem:src/main/resources/db/migration")
 }
 
 dependencies {

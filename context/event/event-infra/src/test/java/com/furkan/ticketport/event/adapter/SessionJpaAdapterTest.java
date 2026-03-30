@@ -4,6 +4,7 @@ import com.furkan.ticketport.event.entity.SessionEntity;
 import com.furkan.ticketport.event.model.Session;
 import com.furkan.ticketport.event.repository.SessionJpaRepository;
 import com.furkan.ticketport.event.valueobject.EventId;
+import com.furkan.ticketport.event.valueobject.Money;
 import com.furkan.ticketport.event.valueobject.SessionId;
 import com.furkan.ticketport.event.valueobject.SessionStatus;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.Currency;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,7 +38,7 @@ class SessionJpaAdapterTest {
     void saveReturnsId() {
         Instant t0 = Instant.parse("2060-01-01T10:00:00Z");
         Instant t1 = Instant.parse("2060-01-01T11:00:00Z");
-        Session s = Session.create(SessionId.valueOf("sj1"), EventId.valueOf("evj"), 3, t0, t1);
+        Session s = Session.create(SessionId.valueOf("sj1"), EventId.valueOf("evj"), 3, Money.free(Currency.getInstance("TRY")), t0, t1);
         SessionEntity saved = new SessionEntity();
         saved.setId("sj1");
         when(sessionJpaRepository.save(ArgumentMatchers.any(SessionEntity.class))).thenReturn(saved);
@@ -53,6 +56,8 @@ class SessionJpaAdapterTest {
                         "evj",
                         1,
                         SessionStatus.ON_SALE,
+                        null,
+                        "TRY",
                         t0,
                         t1,
                         t0,
@@ -68,6 +73,7 @@ class SessionJpaAdapterTest {
                 EventId.valueOf("evj"),
                 1,
                 SessionStatus.ON_SALE,
+                Money.free(Currency.getInstance("TRY")),
                 t0,
                 t1,
                 t0,
