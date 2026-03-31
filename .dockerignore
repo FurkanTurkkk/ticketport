@@ -1,0 +1,9 @@
+.git
+.gitignore
+.idea
+.cursor
+**/.gradle
+**/build
+*.iml
+docs
+**/agent-transcripts

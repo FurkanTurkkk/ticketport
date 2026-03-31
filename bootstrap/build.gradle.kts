@@ -1,6 +1,12 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     id("org.springframework.boot") version "3.2.4"
     id("org.flywaydb.flyway") version "9.22.3"
+}
+
+tasks.withType<BootJar>().configureEach {
+    archiveFileName.set("ticketport.jar")
 }
 
 flyway {

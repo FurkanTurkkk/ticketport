@@ -22,7 +22,7 @@ public final class UserId {
     }
 
     private static void validate(String value) {
-        if(value == null ||value.isEmpty()) {
+        if (value == null || value.isEmpty()) {
             throw new InvalidUserIdException("User ID cannot be empty");
         }
     }

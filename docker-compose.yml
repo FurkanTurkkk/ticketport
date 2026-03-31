@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: ticketport-postgres
+    environment:
+      POSTGRES_DB: ticketport
+      POSTGRES_USER: ticketport
+      POSTGRES_PASSWORD: ticketport
+    ports:
+      - "5432:5432"
+    volumes:
+      - ticketport-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ticketport -d ticketport"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ticketport-app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "9090:9090"
+    environment:
+      # Compose ağında host adı servis ismi: postgres
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ticketport
+      SPRING_DATASOURCE_USERNAME: ticketport
+      SPRING_DATASOURCE_PASSWORD: ticketport
+
+volumes:
+  ticketport-pgdata:

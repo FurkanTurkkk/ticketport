@@ -17,11 +17,12 @@ public final class BookingId {
     }
 
     public static BookingId valueOf(String value) {
+        validate(value);
         return new BookingId(value);
     }
 
     private static void validate(String value) {
-        if(value == null || value.isEmpty()) {
+        if (value == null || value.isEmpty()) {
             throw new InvalidBookingIdException("Booking ID cannot be empty");
         }
     }
